@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-02-18T00:39:40 EET" name="Default suite" finished-at="2026-02-18T00:39:43 EET" duration-ms="3554">
+    <groups>
+    </groups>
+    <test started-at="2026-02-18T00:39:40 EET" name="Default test" finished-at="2026-02-18T00:39:43 EET" duration-ms="3554">
+      <class name="firstproject.sauce">
+        <test-method is-config="true" signature="sauce2()[pri:0, instance:firstproject.sauce@19648c40]" started-at="2026-02-18T00:39:40 EET" name="sauce2" finished-at="2026-02-18T00:39:43 EET" duration-ms="3089" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sauce2 -->
+        <test-method signature="login()[pri:1, instance:firstproject.sauce@19648c40]" started-at="2026-02-18T00:39:43 EET" name="login" finished-at="2026-02-18T00:39:43 EET" duration-ms="242" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="finish()[pri:0, instance:firstproject.sauce@19648c40]" started-at="2026-02-18T00:39:43 EET" name="finish" finished-at="2026-02-18T00:39:43 EET" duration-ms="192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finish -->
+      </class> <!-- firstproject.sauce -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
