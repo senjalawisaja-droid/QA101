@@ -18,45 +18,35 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class sauce {
-
-	String MywebSite = "https://www.saucedemo.com/";
-	String MywebSite2 = "https://www.google.com/";
-	String UserName = "standard_user";
-	String PassWord = "secret_sauce";
-	WebDriver driver = new EdgeDriver();
-	Random rand = new Random();
+public class sauce extends testdata {
 
 	@BeforeTest
 
 	public void sauce2() throws InterruptedException {
 
-		driver.get(MywebSite);
-		driver.manage().window().maximize();
-
-		
-		driver.navigate().to(MywebSite2);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+		driver.get(MywebSite);
+		driver.manage().window().maximize();
+		driver.navigate().to(MywebSite2);
 		wait.until(ExpectedConditions.urlContains("google"));
-
 		driver.navigate().back();
 		wait.until(ExpectedConditions.urlContains("saucedemo"));
-
 
 	}
 
 	@Test(priority = 1)
 	public void login() {
+		// -------------------elements------------
 
 		WebElement UserNameInput = driver.findElement(By.id("user-name"));
 		WebElement PassWordInput = driver.findElement(By.id("password"));
 		WebElement LogInBotten = driver.findElement(By.id("login-button"));
+		//----------------------------actions----------------
 
 		UserNameInput.sendKeys("standard_user");
 		PassWordInput.sendKeys("secret_sauce");
 		LogInBotten.click();
-		// driver.navigate().refresh();
 		Assert.assertEquals(driver.getCurrentUrl().contains("inventory"), true);
 	}
 
@@ -65,74 +55,66 @@ public class sauce {
 	public void RandomCart() {
 		List<WebElement> AddToCartRand = driver.findElements(By.className("btn_primary"));
 		int Randomindex = rand.nextInt(AddToCartRand.size());
-
 		AddToCartRand.get(Randomindex).click();
-
-		// System.out.println(Randomindex);
 
 	}
 
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void add() {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
 		List<WebElement> addToCartButtons = wait
 				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("btn_primary")));
-
-		List<WebElement> buttons = driver.findElements(By.className("btn_primary"));
+		// List<WebElement> buttons = driver.findElements(By.className("btn_primary"));
 
 		for (int i = 0; i < addToCartButtons.size(); i++) {
-
-			wait.until(ExpectedConditions.elementToBeClickable(buttons.get(i))).click();
-
+			wait.until(ExpectedConditions.elementToBeClickable(addToCartButtons.get(i))).click();
 		}
-
 		System.out.println("تم اضافة العناصرللسلة");
-		Assert.assertEquals(driver., null);
 	}
 
-	@Test(priority = 3, enabled = false)
-	public void cartbadge() {
+	@Test(priority = 3, enabled = true)
+	public void cartbadge() throws InterruptedException {
+
+		// -------------------elements------------
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement cartBadge = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));
-		String badgeText = cartBadge.getText();
-		int itemCount = Integer.parseInt(badgeText);
-
-		System.out.println("عدد المنتجات في السلة: " + itemCount);
-
 		List<WebElement> AllItemNames = driver.findElements(By.className("inventory_item_name"));
 		List<WebElement> AllItemsPrices = driver.findElements(By.className("inventory_item_price"));
 
+		String badgeText = cartBadge.getText();
+		int itemCount = Integer.parseInt(badgeText);
 		String info = " and the price is ";
+//----------------------------actions----------------
+		System.out.println("عدد المنتجات في السلة: " + itemCount);
 
 		for (int i = 0; i < AllItemNames.size(); i++) {
 
 			System.out.println(AllItemNames.get(i).getText() + info + AllItemsPrices.get(i).getText());
+
 		}
 
 	}
 
 	@Test(priority = 4, enabled = false)
 	public void remove() {
-		driver.navigate().refresh();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-
 		List<WebElement> addToCartButtons = wait
 				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("btn_secondary")));
-
 		List<WebElement> buttons = driver.findElements(By.className("btn_secondary"));
-
+		
+		
+		driver.navigate().refresh();
 		for (int i = 0; i < addToCartButtons.size(); i++) {
-
 			wait.until(ExpectedConditions.elementToBeClickable(buttons.get(i))).click();
 		}
 		System.out.println("تم ازالة العناصرمن للسلة");
 
 	}
 
-	@Test(priority = 5,enabled = false)
+	@Test(priority = 5, enabled = false)
 
 	public void cartbadge2() {
 
